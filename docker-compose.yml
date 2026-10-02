@@ -1,28 +1,20 @@
 services:
   db:
-    image: postgres:18.1-alpine3.23
-
+    image: postgres:16-alpine
     restart: always
-
     ports:
       - 5433:5432
-
     environment:
+      POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-
       POSTGRES_DB: ${DB_NAME}
-
       POSTGRES_HOST_AUTH_METHOD: trust
-
     container_name: seculosadb
-
     volumes:
       - ./postgres:/var/lib/postgresql/data
-        
+
   adminer:
     image: adminer
-
     restart: always
-
     ports:
       - 8080:8080
